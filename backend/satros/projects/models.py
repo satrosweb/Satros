@@ -47,7 +47,7 @@ class Project(models.Model):
     status = models.CharField(max_length=2,
                               choices=Status.choices,
                               default=Status.NOTCOMPELETED)
-    started = models.DateTimeField()
+    started = models.DateField()
     ended = models.DateField()
 
     objects = models.Manager() # The default manager.
