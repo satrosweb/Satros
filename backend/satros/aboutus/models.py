@@ -11,23 +11,23 @@ class MainJob(models.Model):
 
 
     class Meta:
-        ordering = "-position"
+        ordering = ["-job"]
         verbose_name = "دسته بندی جایگاه"
         verbose_name_plural = "دسته بندی جایگاه ها"
 
     def __str__(self):
-        return self.position
+        return self.job
     
 
 
 class Skill(models.Model):
-    skill = models.CharField(verbose_name="مهارت")
+    skill = models.CharField(verbose_name="مهارت", max_length=200)
     mastery_persent = models.IntegerField(verbose_name="درصد تسلط",
                                           validators=[MinValueValidator(0), MaxValueValidator(100)])
     
 
     class Meta:
-        ordering = "skill"
+        ordering = ["skill"]
         verbose_name = "مهارت"
         verbose_name_plural = "مهارت ها"
 
@@ -58,14 +58,14 @@ class Employe(models.Model):
     resume_summery = models.TextField(verbose_name="خلاصه ی رزومه")
 
     skills = models.ManyToManyField(Skill,
-                                    verbose_name="مهارت ها", blank=True, null=True)
+                                    verbose_name="مهارت ها", blank=True)
     
     
     
 
 
     class Meta:
-        ordering = "full_name"
+        ordering = ["-position"]
         verbose_name = "کارمند"
         verbose_name_plural = "کارمندان"
 
